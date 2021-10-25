@@ -1,0 +1,47 @@
+textarea {
+    min-height: 400px;
+}
+
+div {
+    width: 100%;
+}
+
+ul {
+    width: 100%;
+    padding: 0;
+}
+
+.sender {
+    padding-right: 15px;
+}
+
+li {
+    width: 100%;
+    margin-left: 0;
+}
+
+.timestamp {
+    float: right;
+
+}
+
+#send {
+    margin-top: 5px;
+}
+
+
+.message {
+    width: 100%;
+    border: 2px solid black;
+    padding:5px;
+}
+
+.emailHeader {
+    list-style-type: none;
+    align-items: left;
+    float: left;
+}
+
+#message-view {
+    align-content: left;
+}
