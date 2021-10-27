@@ -164,8 +164,8 @@ function archive(id) {
         archived: true
     })
   })
-  load_mailbox('inbox')
-}
+  .then(() => load_mailbox('inbox')
+  )}
 
 function unarchive(id) {
   fetch(`/emails/${id}`, {
@@ -174,5 +174,5 @@ function unarchive(id) {
         archived: false
     })
   })
-  load_mailbox('inbox')
-}
+  .then(() => load_mailbox('inbox')
+  )}
