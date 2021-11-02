@@ -77,9 +77,10 @@ function reply(id) {
           body: body
         })
       })
-      .then(response => response.json())
-      .then(result => {
-        console.log(result)
+      .then(() => {
+        load_mailbox("sent")
+        document.querySelector('#compose-view').style.display = 'none'
+        document.querySelector('#emails-view').style.display = 'block'
       })
     })
     return false
@@ -116,9 +117,10 @@ function compose_email() {
         body: body
       })
     })
-    .then(response => response.json())
-    .then(result => {
-      console.log(result)
+    .then(() => {
+      load_mailbox("sent")
+      document.querySelector('#compose-view').style.display = 'none'
+      document.querySelector('#emails-view').style.display = 'block'
     })
   })
   return false
