@@ -6,8 +6,6 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#archived').addEventListener('click', () => load_mailbox('archive'));
   document.querySelector('#compose').addEventListener('click', compose_email);
   
-
-
   // By default, load the inbox
   load_mailbox('inbox');
 });
@@ -74,7 +72,6 @@ function reply(id) {
   document.querySelector('#emails-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'block';
   document.querySelector('#message-view').style.display = 'none';
-
   document.querySelector("#composeHeader").innerHTML = "Reply"
 
   fetch(`/emails/${id}`)
@@ -85,7 +82,6 @@ function reply(id) {
     document.querySelector("#compose-body").value = `"On ${email.timestamp} ${email.sender} wrote: ${email.body}"`
 
     const form = document.querySelector("#compose-form")
-
     form.addEventListener("submit", sendEmail)
   })
 }
@@ -97,13 +93,11 @@ function compose_email() {
   document.querySelector('#compose-view').style.display = 'block';
   document.querySelector('#message-view').style.display = 'none';
 
-
   // Clear out composition fields
   document.querySelector('#compose-recipients').value = '';
   document.querySelector('#compose-subject').value = '';
   document.querySelector('#compose-body').value = '';
   document.querySelector("#composeHeader").innerHTML = "New Email"
-
 
   const form = document.querySelector("#compose-form")
 
@@ -116,8 +110,6 @@ function load_mailbox(mailbox) {
   document.querySelector('#message-view').style.display = 'none';
   document.querySelector('#compose-view').style.display = 'none';
   document.querySelector('#emails-view').style.display = 'block';
-
-
 
   // Show the mailbox name
   document.querySelector('#emails-view').innerHTML = `<h3>${mailbox.charAt(0).toUpperCase() + mailbox.slice(1)}</h3>`;
