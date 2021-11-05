@@ -34,6 +34,7 @@ li {
     width: 100%;
     border: 2px solid black;
     padding:5px;
+    cursor: pointer;
 }
 
 .emailHeader {
@@ -45,3 +46,4 @@ li {
 #message-view {
     align-content: left;
 }
+

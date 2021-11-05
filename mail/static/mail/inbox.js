@@ -12,6 +12,28 @@ document.addEventListener('DOMContentLoaded', function() {
   load_mailbox('inbox');
 });
 
+function sendEmail(event) {
+  const form = document.querySelector("#compose-form")
+
+  const recipients = document.querySelector('#compose-recipients').value
+  const subject = document.querySelector("#compose-subject").value
+  const body = document.querySelector("#compose-body").value
+
+  fetch('/emails', {
+    method: 'POST', 
+    body: JSON.stringify({
+      recipients: recipients,
+      subject: subject, 
+      body: body
+    })
+  })
+  .then(() => {
+    load_mailbox("sent")
+    document.querySelector('#compose-view').style.display = 'none'
+    document.querySelector('#emails-view').style.display = 'block'
+    form.removeEventListener('submit', sendEmail)
+  })
+}
 
 function load_email(id) {
   // Show message view and hide other views
@@ -64,26 +86,7 @@ function reply(id) {
 
     const form = document.querySelector("#compose-form")
 
-    form.addEventListener("submit", function () {
-      const recipients = document.querySelector('#compose-recipients').value
-      const subject = document.querySelector("#compose-subject").value
-      const body = document.querySelector("#compose-body").value
-  
-      fetch('/emails', {
-        method: 'POST', 
-        body: JSON.stringify({
-          recipients: recipients,
-          subject: subject, 
-          body: body
-        })
-      })
-      .then(() => {
-        load_mailbox("sent")
-        document.querySelector('#compose-view').style.display = 'none'
-        document.querySelector('#emails-view').style.display = 'block'
-      })
-    })
-    return false
+    form.addEventListener("submit", sendEmail)
   })
 }
 
@@ -104,26 +107,7 @@ function compose_email() {
 
   const form = document.querySelector("#compose-form")
 
-  form.addEventListener("submit", function () {
-    const recipients = document.querySelector('#compose-recipients').value
-    const subject = document.querySelector("#compose-subject").value
-    const body = document.querySelector("#compose-body").value
-
-    fetch('/emails', {
-      method: 'POST', 
-      body: JSON.stringify({
-        recipients: recipients,
-        subject: subject, 
-        body: body
-      })
-    })
-    .then(() => {
-      load_mailbox("sent")
-      document.querySelector('#compose-view').style.display = 'none'
-      document.querySelector('#emails-view').style.display = 'block'
-    })
-  })
-  return false
+  form.addEventListener("submit", sendEmail)
 }
 
 function load_mailbox(mailbox) {
